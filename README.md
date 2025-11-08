@@ -29,38 +29,6 @@ Designed with a **frosted glass UI** (Apple-style), it provides users with **ins
 ---
 
 ## 📂 Project Structure
-
-# 🩺 Early Diabetes Detection – Machine Learning Health Prediction System
-
-An interactive **machine learning-powered health prediction platform** that detects early signs of **diabetes** based on medical parameters.  
-Designed with a **frosted glass UI** (Apple-style), it provides users with **instant health predictions**, along with **personalized diet, exercise, and precautionary suggestions** based on risk level.
-
----
-
-## 🚀 Features
-
-- 🧠 **ML-based Prediction:** Uses Logistic Regression to analyze multiple health metrics.  
-- 🌐 **Interactive Web Interface:** Built using Flask + Bootstrap with a modern glassmorphism UI.  
-- 🧾 **Detailed Health Report:** Displays risk level with tailored diet, fitness, and precaution tips.  
-- 💾 **Data-Driven Model:** Trained on the PIMA Diabetes dataset for high accuracy.  
-- 📊 **Clean Visualization:** Input ranges for metrics like glucose, BMI, and blood pressure.  
-- 🔒 **Offline Model:** Works completely locally—no API keys required.
-
----
-
-## 🧩 Tech Stack
-
-| Layer | Technology Used |
-|-------|------------------|
-| **Frontend** | HTML5, CSS3, Bootstrap 5 |
-| **Backend** | Flask (Python) |
-| **Machine Learning** | Scikit-learn, Pandas, NumPy |
-| **Model Storage** | Pickle (.pkl) |
-| **Dataset** | PIMA Indians Diabetes Dataset (Kaggle) |
-
----
-
-## 📂 Project Structure
 <pre>
 Early-Diabetes-Detection/
 │
