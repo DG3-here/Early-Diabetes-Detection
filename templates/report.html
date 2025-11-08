@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Health Report - Early Diabetes Detection</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(135deg, #f5f7fa, #cfd9df);
+      color: #1b263b;
+      font-family: 'Poppins', sans-serif;
+      padding: 50px 10px;
+    }
+
+    .report {
+      background: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(25px);
+      border-radius: 25px;
+      padding: 50px;
+      max-width: 750px;
+      margin: auto;
+      box-shadow: 0 10px 35px rgba(0, 0, 0, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #023e8a;
+      font-weight: 700;
+    }
+
+    .risk {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: #0077b6;
+      text-align: center;
+    }
+
+    .result {
+      text-align: center;
+      font-weight: 600;
+      color: #03045e;
+      font-size: 1.05rem;
+    }
+
+    h4 {
+      color: #0077b6;
+      margin-top: 25px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    ul {
+      color: #212529;
+      line-height: 1.8;
+      padding-left: 20px;
+      margin-top: 8px;
+    }
+
+    ul li::marker {
+      color: #00b4d8;
+    }
+
+    .btn-custom {
+      background: linear-gradient(90deg, #0096c7, #0077b6);
+      color: white;
+      border-radius: 10px;
+      padding: 10px 20px;
+      font-size: 1rem;
+      font-weight: 600;
+      border: none;
+      transition: all 0.3s ease;
+      margin-top: 20px;
+    }
+
+    .btn-custom:hover {
+      background: linear-gradient(90deg, #0077b6, #023e8a);
+      transform: translateY(-2px);
+    }
+
+    .text-center a {
+      text-decoration: none;
+      color: white;
+    }
+
+    .divider {
+      height: 1px;
+      background: rgba(0, 0, 0, 0.1);
+      margin: 15px 0 25px;
+    }
+
+    @media (max-width: 768px) {
+      .report {
+        padding: 30px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="report">
+    <h2>🩺 Personalized Health Report</h2>
+    <p class="result">{{ prediction_text }}</p>
+    <p class="risk">🧠 Risk Level: <span>{{ risk_level }}</span></p>
+
+    <div class="divider"></div>
+
+    <h4>🥗 Recommended Diet</h4>
+    <ul>
+      {% for item in diet %}
+        <li>{{ item }}</li>
+      {% endfor %}
+    </ul>
+
+    <h4>🏃 Exercise Suggestions</h4>
+    <ul>
+      {% for ex in exercise %}
+        <li>{{ ex }}</li>
+      {% endfor %}
+    </ul>
+
+    <h4>⚠️ Precautions</h4>
+    <ul>
+      {% for tip in precautions %}
+        <li>{{ tip }}</li>
+      {% endfor %}
+    </ul>
+
+    <div class="text-center">
+      <a href="/" class="btn btn-custom">← Go Back</a>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Early Diabetes Detection</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ===== Background ===== */
+    body {
+      background: linear-gradient(135deg, #f5f7fa, #cfd9df);
+      background-attachment: fixed;
+      font-family: 'Poppins', sans-serif;
+      color: #1b263b;
+      overflow-x: hidden;
+    }
+
+    /* ===== Card (Glassmorphism) ===== */
+    .card {
+      background: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(25px);
+      border-radius: 20px;
+      padding: 40px;
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+      width: 95%;
+      max-width: 850px;
+    }
+
+    h2 {
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      color: #0b2447;
+      text-align: center;
+    }
+
+    label {
+      font-size: 0.9rem;
+      color: #1b263b;
+      margin-bottom: 5px;
+      font-weight: 500;
+    }
+
+    /* ===== Input Fields ===== */
+    .form-control {
+      background: rgba(255, 255, 255, 0.85);
+      border: 1px solid rgba(200, 200, 200, 0.5);
+      border-radius: 10px;
+      padding: 10px;
+      font-weight: 500;
+      color: #1b263b;
+      font-size: 0.9rem;
+      margin-bottom: 10px;
+      transition: 0.2s;
+    }
+
+    .form-control:focus {
+      border-color: #0096c7;
+      box-shadow: 0 0 8px rgba(0, 150, 199, 0.2);
+      transform: scale(1.01);
+    }
+
+    /* ===== Minimal Apple-Style Slider ===== */
+    input[type="range"] {
+      -webkit-appearance: none;
+      width: 100%;
+      height: 8px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.7);
+      box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+      outline: none;
+      transition: background 0.3s ease;
+    }
+
+    input[type="range"]:hover {
+      background: rgba(255, 255, 255, 0.9);
+    }
+
+    /* Slider thumb (small, white, subtle shadow) */
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: #ffffff;
+      border: 1px solid rgba(180, 180, 180, 0.8);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    input[type="range"]::-webkit-slider-thumb:hover {
+      transform: scale(1.1);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+    }
+
+    /* Firefox */
+    input[type="range"]::-moz-range-thumb {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: #ffffff;
+      border: 1px solid rgba(180, 180, 180, 0.8);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+    }
+
+    output {
+      color: #495057;
+      font-weight: 600;
+      font-size: 0.9rem;
+      display: block;
+      text-align: right;
+      margin-top: 3px;
+    }
+
+    /* ===== Button ===== */
+    .btn-custom {
+      background: linear-gradient(90deg, #0096c7, #0077b6);
+      color: white;
+      border-radius: 10px;
+      padding: 12px;
+      font-size: 1rem;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      border: none;
+      margin-top: 10px;
+    }
+
+    .btn-custom:hover {
+      background: linear-gradient(90deg, #0077b6, #023e8a);
+      transform: translateY(-2px);
+    }
+
+    h5 {
+      margin-top: 20px;
+      font-weight: 600;
+      color: #023e8a;
+      text-align: center;
+      font-size: 1.1rem;
+    }
+
+    @media (max-width: 768px) {
+      .row-cols-2 > * {
+        flex: 0 0 100%;
+        max-width: 100%;
+      }
+      .card {
+        padding: 25px;
+      }
+    }
+  </style>
+</head>
+
+<body class="d-flex align-items-center justify-content-center vh-100">
+  <div class="card">
+    <h2>🩺 Early Diabetes Detection</h2>
+
+    <form action="/predict" method="post">
+      <div class="row row-cols-2 g-3">
+        <div class="col">
+          <label for="gender">Gender</label>
+          <select class="form-control" name="Gender" id="gender">
+            <option value="female">Female</option>
+            <option value="male">Male</option>
+          </select>
+        </div>
+
+        <div class="col">
+          <label for="preg">Pregnancies</label>
+          <input class="form-control" type="number" min="0" max="15" name="Pregnancies" id="preg" placeholder="(0 if male)" required>
+        </div>
+
+        <div class="col">
+          <label>Glucose Level</label>
+          <input type="range" class="form-control" min="50" max="200" step="1" name="Glucose" oninput="glucoseVal.value = this.value">
+          <output id="glucoseVal">125</output>
+        </div>
+
+        <div class="col">
+          <label>Blood Pressure</label>
+          <input type="range" class="form-control" min="40" max="150" step="1" name="BloodPressure" oninput="bpVal.value = this.value">
+          <output id="bpVal">80</output>
+        </div>
+
+        <div class="col">
+          <label for="skin">Skin Thickness</label>
+          <input class="form-control" type="number" min="0" max="100" name="SkinThickness" id="skin" placeholder="e.g., 25 mm" required>
+        </div>
+
+        <div class="col">
+          <label for="insulin">Insulin</label>
+          <input class="form-control" type="number" min="0" max="900" name="Insulin" id="insulin" placeholder="e.g., 120" required>
+        </div>
+
+        <div class="col">
+          <label for="bmi">BMI</label>
+          <input class="form-control" type="number" step="0.1" min="10" max="60" name="BMI" id="bmi" placeholder="e.g., 28.5" required>
+        </div>
+
+        <div class="col">
+          <label for="ped">Diabetes Pedigree Function</label>
+          <input class="form-control" type="number" step="0.01" min="0.05" max="3.0" name="DiabetesPedigreeFunction" id="ped" placeholder="e.g., 0.5" required>
+        </div>
+
+        <div class="col">
+          <label for="age">Age</label>
+          <input class="form-control" type="number" min="1" max="100" name="Age" id="age" placeholder="e.g., 35" required>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-custom w-100 mt-4">Predict</button>
+    </form>
+
+    {% if prediction_text %}
+      <h5 class="mt-3">{{ prediction_text }}</h5>
+    {% endif %}
+  </div>
+</body>
+</html>
